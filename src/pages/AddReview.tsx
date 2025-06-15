@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,7 +19,6 @@ const AddReview = () => {
     food: 3,
     ambiance: 3,
     service: 3,
-    value: 3,
     vibe: 3
   });
 
@@ -67,7 +65,7 @@ const AddReview = () => {
     setLocation("");
     setReview("");
     setTags([]);
-    setRatings({ food: 3, ambiance: 3, service: 3, value: 3, vibe: 3 });
+    setRatings({ food: 3, ambiance: 3, service: 3, vibe: 3 });
   };
 
   return (
@@ -135,12 +133,7 @@ const AddReview = () => {
               onChange={(value) => setRatings({...ratings, service: value})}
             />
             <RatingSlider
-              label="Value for Money"
-              value={ratings.value}
-              onChange={(value) => setRatings({...ratings, value: value})}
-            />
-            <RatingSlider
-              label="Overall Vibe"
+              label="Vibe"
               value={ratings.vibe}
               onChange={(value) => setRatings({...ratings, vibe: value})}
             />

@@ -14,7 +14,7 @@ interface FeedCardProps {
     image: string;
     location: string;
     tags: string[];
-    ratings: { food: number; ambiance: number; service: number; value: number; vibe: number };
+    ratings: { food: number; ambiance: number; service: number; vibe: number };
     review: string;
     timestamp: string;
     likes: number;
@@ -76,9 +76,8 @@ const FeedCard = ({ post }: FeedCardProps) => {
             <RatingBar label="Food" rating={post.ratings.food} />
             <RatingBar label="Ambiance" rating={post.ratings.ambiance} />
             <RatingBar label="Service" rating={post.ratings.service} />
-            <RatingBar label="Value" rating={post.ratings.value} />
+            <RatingBar label="Vibe" rating={post.ratings.vibe} />
           </div>
-          <RatingBar label="Overall Vibe" rating={post.ratings.vibe} />
         </div>
 
         {/* Review Text */}
