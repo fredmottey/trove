@@ -4,12 +4,27 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, MessageCircle, Bookmark, Filter } from "lucide-react";
+import { Heart, MessageCircle, Bookmark, Filter, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 import FeedCard from "@/components/FeedCard";
 import FilterSheet from "@/components/FilterSheet";
 
 const Index = () => {
   const [showFilters, setShowFilters] = useState(false);
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
+
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to sign out. Please try again.',
+        variant: 'destructive',
+      });
+    }
+  };
 
   const feedData = [
     {
@@ -48,16 +63,26 @@ const Index = () => {
           <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
             TastePal
           </h1>
-          <p className="text-gray-600 text-sm">Discover through friends</p>
+          <p className="text-gray-600 text-sm">Welcome back, {user?.user_metadata?.full_name || user?.email}</p>
         </div>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => setShowFilters(true)}
-          className="rounded-full border-orange-200 hover:bg-orange-50"
-        >
-          <Filter className="h-4 w-4 text-orange-600" />
-        </Button>
+        <div className="flex items-center space-x-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setShowFilters(true)}
+            className="rounded-full border-orange-200 hover:bg-orange-50"
+          >
+            <Filter className="h-4 w-4 text-orange-600" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleSignOut}
+            className="rounded-full border-red-200 hover:bg-red-50"
+          >
+            <LogOut className="h-4 w-4 text-red-600" />
+          </Button>
+        </div>
       </div>
 
       {/* Stories Section */}
