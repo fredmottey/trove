@@ -46,7 +46,7 @@ const Index = () => {
       <div className="flex items-center justify-between px-4 mb-6">
         <div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-            TastePal
+            Trove
           </h1>
           <p className="text-gray-600 text-sm">Discover through friends</p>
         </div>

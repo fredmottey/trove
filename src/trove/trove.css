@@ -1,0 +1,829 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+.trove-app {
+  --ink: #292c25;
+  --muted: #73766b;
+  --line: #e5e5dc;
+  --orange: #d35d35;
+  font-family: "DM Sans", sans-serif;
+  color: var(--ink);
+  background: #f8f8f3;
+  min-height: 100vh;
+}
+.trove-app * {
+  box-sizing: border-box;
+}
+.trove-app h1,
+.trove-app h2,
+.trove-app h3 {
+  font-family: Manrope, sans-serif;
+  letter-spacing: -0.045em;
+}
+.trove-app a,
+.trove-app button {
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.trove-app a:focus-visible,
+.trove-app button:focus-visible {
+  outline: 3px solid #c25830;
+  outline-offset: 4px;
+}
+.trove-sidebar {
+  width: 236px;
+  background: #fffefa;
+  border-right: 1px solid var(--line);
+  padding: 38px 24px;
+  position: fixed;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+}
+.trove-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -3px;
+}
+.trove-logo svg {
+  color: var(--orange);
+}
+.trove-logo span,
+.mobile-logo span {
+  color: var(--orange);
+}
+.side-caption {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 5px 0 44px;
+}
+.trove-sidebar nav {
+  display: grid;
+  gap: 9px;
+}
+.trove-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #73766b;
+}
+.trove-sidebar nav a.active {
+  background: #f3e6da;
+  color: #a34729;
+  font-weight: 700;
+}
+.sidebar-bottom {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.sidebar-bottom small {
+  display: block;
+  font-size: 10px;
+}
+.trove-body {
+  margin-left: 236px;
+}
+.trove-top {
+  height: 79px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px;
+  background: #fffefa;
+}
+.location-label {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+}
+.mode-pill {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #dedfd5;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+.trove-app main {
+  max-width: 1280px;
+  margin: auto;
+  padding: 24px 48px 32px;
+}
+.demo-notice {
+  font-size: 11px;
+  color: #73766b;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.demo-notice a {
+  color: #9b482f;
+  white-space: nowrap;
+}
+.hero {
+  background: #eceee0;
+  border: 1px solid #e1e4d2;
+  min-height: 282px;
+  border-radius: 16px;
+  padding: 34px 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #717956;
+}
+.hero h1 {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 13px 0 15px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: #8b4b30;
+}
+.hero p:not(.eyebrow) {
+  font-size: 13px;
+  max-width: 430px;
+  color: #6a715e;
+  line-height: 1.8;
+}
+.primary-link,
+.trove-app button.primary {
+  background: var(--orange);
+  color: white;
+  border: 0;
+  border-radius: 7px;
+  padding: 12px 17px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.primary-link {
+  margin-top: 19px;
+}
+.hero-stamp {
+  border: 1px solid #a0a888;
+  border-radius: 50%;
+  height: 178px;
+  width: 178px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(12deg);
+  color: #78835d;
+  outline: 1px solid #a0a888;
+  outline-offset: -8px;
+}
+.hero-stamp strong {
+  font-family: Manrope, sans-serif;
+  font-size: 40px;
+  letter-spacing: -3px;
+  line-height: 1.3;
+}
+.hero-stamp span {
+  font-size: 7px;
+  letter-spacing: 0.15em;
+}
+.collection-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 38px 0 22px;
+}
+.collection-bar h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-top: 6px;
+}
+.collection-bar h2 > span {
+  font:
+    11px "DM Sans",
+    sans-serif;
+  letter-spacing: 0;
+  background: #e9eadf;
+  padding: 3px 7px;
+  vertical-align: middle;
+  border-radius: 5px;
+  color: #6b715b;
+}
+.collection-stats,
+.account-stats {
+  display: flex;
+  gap: 28px;
+}
+.collection-stats strong,
+.account-stats strong {
+  font-size: 23px;
+  font-weight: 500;
+}
+.collection-stats small,
+.account-stats small {
+  font-size: 10px;
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.filter-bar {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+.trove-app label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666c5c;
+}
+.trove-app input,
+.trove-app select,
+.trove-app textarea {
+  background: #fffefa;
+  border: 1px solid #dedfd4;
+  border-radius: 7px;
+  font:
+    13px "DM Sans",
+    sans-serif;
+  color: var(--ink);
+  padding: 11px 12px;
+  width: 100%;
+  min-width: 0;
+}
+.trove-app input:focus,
+.trove-app select:focus,
+.trove-app textarea:focus {
+  outline: 2px solid #b9c29e;
+  outline-offset: 1px;
+}
+.search-field {
+  flex: 2;
+}
+.filter-bar label {
+  flex: 1;
+  min-width: 0;
+}
+.trove-app button {
+  border: 1px solid #dcded1;
+  background: #fffefa;
+  font-size: 12px;
+  border-radius: 7px;
+  padding: 10px 13px;
+  cursor: pointer;
+}
+.trove-app button:hover {
+  background: #eceee0;
+}
+.trove-app button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.trove-app button.quiet {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+  padding: 5px 0;
+}
+.filter-bar button.quiet {
+  height: 40px;
+}
+.result-count {
+  font-size: 10px;
+  color: var(--muted);
+  margin: 17px 0;
+}
+.place-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.place-card {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  overflow: hidden;
+  background: #fffefa;
+  display: flex;
+  flex-direction: column;
+}
+.card-art {
+  height: 140px;
+  position: relative;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8f946e;
+  background: #e8ebd8;
+  overflow: hidden;
+}
+.card-art:after {
+  content: "";
+  width: 170px;
+  height: 170px;
+  border: 1px solid currentColor;
+  opacity: 0.23;
+  border-radius: 50%;
+  position: absolute;
+  right: -45px;
+  top: 5px;
+}
+.card-art > span:first-child {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+.card-art svg {
+  opacity: 0.6;
+  transform: rotate(-15deg);
+}
+.card-art .art-number {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font:
+    24px Manrope,
+    sans-serif;
+  opacity: 0.5;
+}
+.art-1 {
+  background: #f0dfce;
+  color: #ac8059;
+}
+.art-2 {
+  background: #e4e8e9;
+  color: #7a9193;
+}
+.art-3 {
+  background: #eadedb;
+  color: #ac8177;
+}
+.card-content {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  color: #7b7d6d;
+}
+.status {
+  border-radius: 20px;
+  padding: 4px 7px;
+  background: #f3ecd9;
+  color: #8a733d;
+  white-space: nowrap;
+}
+.status.been {
+  background: #e5eddf;
+  color: #547247;
+}
+.place-card h3 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 800;
+  margin: 8px 0;
+}
+.card-location {
+  display: flex;
+  align-items: start;
+  gap: 5px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.card-location svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.recognition {
+  font-size: 9px;
+  color: #a05538;
+  margin: 14px 0 7px;
+}
+.recognition small {
+  display: block;
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin: 9px 0 12px;
+}
+.tags span {
+  font-size: 9px;
+  border: 1px solid #e4e5db;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #737765;
+}
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 13px;
+  margin-top: auto;
+  font-size: 10px;
+  font-weight: 600;
+}
+.card-actions a {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #a64d30;
+}
+.card-tools {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 9px;
+  color: var(--muted);
+}
+.review-preview {
+  background: #f5f4ed;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 11px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.review-preview span {
+  font-size: 9px;
+  text-transform: capitalize;
+}
+.personal-note {
+  font-size: 11px;
+  line-height: 1.7;
+  padding: 8px 0;
+  overflow-wrap: anywhere;
+}
+.editor {
+  max-width: 740px;
+  margin: 40px auto 70px;
+}
+.editor h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 12px 0;
+}
+.editor > p {
+  line-height: 1.8;
+  color: var(--muted);
+  font-size: 13px;
+}
+.editor form {
+  display: grid;
+  gap: 22px;
+  margin-top: 28px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.editor textarea {
+  min-height: 125px;
+  resize: vertical;
+}
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 12px;
+}
+.account-stats {
+  margin: 24px 0;
+}
+.demo-panel {
+  padding: 24px;
+  background: #eceee0;
+  border-radius: 12px;
+  margin: 24px 0 40px;
+  line-height: 1.8;
+  font-size: 13px;
+}
+.demo-panel h2,
+.editor h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.demo-panel p {
+  margin: 10px 0;
+}
+.error {
+  color: #a12c27;
+  background: #fff0ed;
+  border: 1px solid #f1d5ce;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.empty {
+  padding: 55px 20px;
+  text-align: center;
+  line-height: 2;
+}
+.empty h1 {
+  font-size: 28px;
+}
+.empty button {
+  margin: 10px;
+}
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+footer {
+  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 9px;
+  color: var(--muted);
+}
+footer a {
+  color: #a64d30;
+}
+footer span {
+  margin-left: auto;
+}
+.mobile-logo,
+.trove-mobile-nav {
+  display: none;
+}
+@media (min-width: 1600px) {
+  .place-grid {
+    gap: 26px;
+  }
+  .card-art {
+    height: 170px;
+  }
+}
+@media (max-width: 1150px) {
+  .place-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .trove-app main {
+    padding: 24px 28px;
+  }
+  .trove-top {
+    padding: 0 28px;
+  }
+  .hero h1 {
+    font-size: 38px;
+  }
+  .hero-stamp {
+    width: 125px;
+    height: 125px;
+  }
+  .hero-stamp strong {
+    font-size: 30px;
+  }
+  .hero-stamp svg {
+    width: 24px;
+  }
+  .hero-stamp span {
+    font-size: 5px;
+  }
+  .hero {
+    padding: 28px;
+  }
+  .filter-bar {
+    flex-wrap: wrap;
+  }
+  .filter-bar .search-field {
+    flex: 1 1 100%;
+  }
+}
+@media (max-width: 767px) {
+  .trove-sidebar {
+    display: none;
+  }
+  .trove-body {
+    margin: 0;
+  }
+  .trove-top {
+    height: 64px;
+    padding: 0 20px;
+  }
+  .mobile-logo {
+    display: block;
+    font-weight: 800;
+    font-size: 29px;
+    letter-spacing: -2px;
+  }
+  .location-label {
+    display: none;
+  }
+  .trove-app main {
+    padding: 18px 18px 100px;
+  }
+  .demo-notice {
+    font-size: 10px;
+    line-height: 1.7;
+    display: block;
+    margin-bottom: 18px;
+  }
+  .demo-notice a {
+    display: block;
+  }
+  .hero {
+    min-height: 260px;
+    padding: 25px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    max-width: 250px;
+  }
+  .hero-stamp {
+    display: none;
+  }
+  .hero p:not(.eyebrow) {
+    font-size: 12px;
+  }
+  .collection-bar {
+    margin-top: 28px;
+  }
+  .collection-bar h2 {
+    font-size: 21px;
+  }
+  .collection-stats {
+    gap: 16px;
+  }
+  .collection-stats strong {
+    font-size: 19px;
+  }
+  .place-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .card-content {
+    padding: 12px;
+  }
+  .card-art {
+    height: 108px;
+  }
+  .card-art svg {
+    width: 34px;
+  }
+  .place-card h3 {
+    font-size: 17px;
+  }
+  .card-meta {
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .card-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card-tools {
+    flex-wrap: wrap;
+  }
+  .filter-bar label {
+    flex: 1 1 40%;
+  }
+  .filter-bar .search-field {
+    flex-basis: 100%;
+  }
+  .trove-mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fffefa;
+    border-top: 1px solid var(--line);
+    justify-content: space-around;
+    padding: 12px 8px max(12px, env(safe-area-inset-bottom));
+    z-index: 30;
+  }
+  .trove-mobile-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 9px;
+    color: var(--muted);
+  }
+  .trove-mobile-nav a.active {
+    color: var(--orange);
+  }
+  .editor {
+    margin: 25px auto;
+  }
+  .editor h1 {
+    font-size: 29px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .recognition {
+    font-size: 8px;
+  }
+  footer {
+    line-height: 1.8;
+  }
+  footer span {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 380px) {
+  .place-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-actions {
+    flex-direction: row;
+  }
+  .card-meta {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 599px) {
+  .place-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-art {
+    height: 140px;
+  }
+  .card-content {
+    padding: 18px;
+  }
+  .card-meta {
+    flex-direction: row;
+    font-size: 11px;
+  }
+  .place-card h3 {
+    font-size: 23px;
+  }
+  .card-location {
+    font-size: 12px;
+  }
+  .recognition {
+    font-size: 11px;
+  }
+  .recognition small {
+    font-size: 10px;
+  }
+  .tags span {
+    font-size: 11px;
+  }
+  .card-actions {
+    flex-direction: row;
+    font-size: 12px;
+  }
+  .card-tools {
+    font-size: 11px;
+  }
+  .trove-app button.quiet {
+    font-size: 11px;
+  }
+}
