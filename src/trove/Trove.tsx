@@ -31,6 +31,7 @@ import {
   type PlaceInput,
   type Review,
 } from "./model";
+import { photoForPlace } from "./photos";
 import "./trove.css";
 
 const blank: PlaceInput = {
@@ -107,7 +108,7 @@ export default function Trove() {
     ["/profile", "Your space", Settings],
   ] as const;
   return (
-    <div className="trove-app">
+    <div className="trove-app" data-theme="dark">
       <aside className="trove-sidebar">
         <Link to="/" className="trove-logo">
           <Utensils size={23} /> trove<span>·</span>
@@ -384,13 +385,7 @@ function LibraryPage({
       <div className="place-grid">
         {filtered.map((p, i) => (
           <article className="place-card" key={p.id} aria-label={p.name}>
-            <div className={`card-art art-${i % 4}`} aria-hidden="true">
-              <span>{p.cuisine || "Your discovery"}</span>
-              <Utensils size={52} />
-              <span className="art-number">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </div>
+            <RestaurantImage place={p} index={i} />
             <div className="card-content">
               <div className="card-meta">
                 <span>{p.cuisine || "Restaurant"}</span>
@@ -492,6 +487,47 @@ function LibraryPage({
     </>
   );
 }
+function RestaurantImage({ place, index }: { place: Place; index: number }) {
+  const photo = photoForPlace(place);
+  const [failed, setFailed] = useState(false);
+  return (
+    <div
+      className={`card-art art-${index % 4}${photo && !failed ? " has-photo" : ""}`}
+    >
+      {photo && !failed ? (
+        <>
+          <img
+            src={photo.src}
+            alt={`${place.name} restaurant photo`}
+            width={1000}
+            height={700}
+            loading={index < 3 ? "eager" : "lazy"}
+            decoding="async"
+            onError={() => setFailed(true)}
+          />
+          <a
+            className="photo-credit"
+            href={photo.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Photo source for ${place.name}: MICHELIN Guide`}
+          >
+            Photo via MICHELIN ↗
+          </a>
+        </>
+      ) : (
+        <>
+          <Utensils size={52} aria-hidden="true" />
+          <span className="art-number" aria-hidden="true">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </>
+      )}
+      <span className="photo-cuisine">{place.cuisine || "Your discovery"}</span>
+    </div>
+  );
+}
+
 function EditPlace({ places, run }: { places: Place[]; run: Run }) {
   const { id } = useParams();
   const place = places.find((p) => p.id === id);

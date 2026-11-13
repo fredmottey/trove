@@ -1,12 +1,11 @@
-
 {
   "name": "Trove - Social Food Reviews",
   "short_name": "Trove",
   "description": "Discover amazing restaurants through your friends and share your culinary experiences",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fff7ed",
-  "theme_color": "#f97316",
+  "background_color": "#121612",
+  "theme_color": "#121612",
   "orientation": "portrait-primary",
   "categories": ["food", "social", "lifestyle"],
   "icons": [

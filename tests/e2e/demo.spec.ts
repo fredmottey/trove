@@ -4,6 +4,19 @@ test("public library can save, review, reload, filter, and reset", async ({
 }, testInfo) => {
   await page.goto("/");
   await expect(page.getByRole("article")).toHaveCount(12);
+  const firstPhoto = page.getByRole("img", { name: "Daru restaurant photo" });
+  await expect(firstPhoto).toBeVisible();
+  await expect
+    .poll(() =>
+      firstPhoto.evaluate(
+        (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+      ),
+    )
+    .toBe(true);
+  await expect(page.locator(".trove-app")).toHaveAttribute(
+    "data-theme",
+    "dark",
+  );
   await page.screenshot({
     path: testInfo.outputPath("library.png"),
     fullPage: true,

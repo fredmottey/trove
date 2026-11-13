@@ -1,0 +1,122 @@
+[
+  {
+    "restaurant": "Daru",
+    "seedKey": "daru",
+    "path": "/images/restaurants/daru.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/daru",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/425d6b4e31e94ee380b417a33565f4c9.jpg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 110929
+  },
+  {
+    "restaurant": "Lapis",
+    "seedKey": "lapis",
+    "path": "/images/restaurants/lapis.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/lapis",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/ff6f0c73a255482eb88c5c107d71b5d3.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 148062
+  },
+  {
+    "restaurant": "The Red Hen",
+    "seedKey": "the-red-hen",
+    "path": "/images/restaurants/the-red-hen.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/the-red-hen",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/bbcef075eb9a46a48c6bf4f1189405ae.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 150443
+  },
+  {
+    "restaurant": "Toki Underground",
+    "seedKey": "toki-underground",
+    "path": "/images/restaurants/toki-underground.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/toki-underground",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/3736e7cac54744549ec5b2940b2318a4.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 133731
+  },
+  {
+    "restaurant": "Maketto",
+    "seedKey": "maketto",
+    "path": "/images/restaurants/maketto.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/maketto",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/b45d364129f64a008a780b653ea737d8.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 90076
+  },
+  {
+    "restaurant": "Sababa",
+    "seedKey": "sababa",
+    "path": "/images/restaurants/sababa.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/sababa",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/113f02b65d9947b5a34cec199542430e.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 146686
+  },
+  {
+    "restaurant": "Queen’s English",
+    "seedKey": "queen%E2%80%99s-english",
+    "path": "/images/restaurants/queens-english.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/queen%E2%80%99s-english",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/9c70f8c4cf7a430ba5e6491f159aa723.jpg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 122956
+  },
+  {
+    "restaurant": "Dauphine’s",
+    "seedKey": "dauphine-s",
+    "path": "/images/restaurants/dauphine-s.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/dauphine-s",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/b37f5a0116c74c25ba35c9365fcaca74.jpg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 70581
+  },
+  {
+    "restaurant": "Ellē",
+    "seedKey": "elle",
+    "path": "/images/restaurants/elle.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/elle",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/ea7b5ddb835247d886d8f92f384311fb.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 130951
+  },
+  {
+    "restaurant": "La Tejana",
+    "seedKey": "la-tejana",
+    "path": "/images/restaurants/la-tejana.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/la-tejana",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/ebc33290794e4b018c8011999fec8d11.jpg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 161786
+  },
+  {
+    "restaurant": "Menya Hosaki",
+    "seedKey": "menya-hosaki",
+    "path": "/images/restaurants/menya-hosaki.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/menya-hosaki",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/20f05cb8bbc446b3973005dfc40cba46.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 47366
+  },
+  {
+    "restaurant": "Zaytinya",
+    "seedKey": "zaytinya",
+    "path": "/images/restaurants/zaytinya.jpg",
+    "source": "MICHELIN Guide restaurant listing",
+    "sourceUrl": "https://guide.michelin.com/en/district-of-columbia/washington-dc/restaurant/zaytinya",
+    "originalUrl": "https://prod-pics.guide.michelin.com/api/public/content/b61daddea47f446cb9670449ca629ca0.jpeg?format=jpg&w=1000&h=700",
+    "retrievedOn": "2026-11-13",
+    "bytes": 215420
+  }
+]
