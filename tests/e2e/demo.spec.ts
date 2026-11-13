@@ -36,4 +36,9 @@ test("public library can save, review, reload, filter, and reset", async ({
   await page.getByRole("button", { name: "Reset demo", exact: true }).click();
   await page.goto("/");
   await expect(page.getByRole("article")).toHaveCount(12);
+  await page.goto("/auth");
+  await expect(page).toHaveURL(/\/profile$/);
+  await expect(
+    page.getByRole("heading", { name: "Try it. Make it yours." }),
+  ).toBeVisible();
 });

@@ -1,5 +1,5 @@
 // Real PostgreSQL engine; local Supabase tests additionally cover its deployed auth roles/API.
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { PGlite } from "@electric-sql/pglite";
 import { expect, it } from "vitest";
 
@@ -7,14 +7,16 @@ it("migration enforces ownership, membership, review constraints, and atomic pub
   const db = new PGlite();
   try {
     await db.exec(`create role anon; create role authenticated; create schema auth;
- create table auth.users(id uuid primary key,email text);
+ create table auth.users(id uuid primary key,email text,raw_user_meta_data jsonb);
  create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
  grant usage on schema auth,public to authenticated,anon;
  grant execute on function auth.uid() to authenticated,anon;`);
-    await db.exec(
-      readFileSync("supabase/migrations/20261113000100_trove.sql", "utf8"),
-    );
-    await db.exec(`insert into auth.users values('10000000-0000-0000-0000-000000000001','a@test'),('10000000-0000-0000-0000-000000000002','b@test'),('10000000-0000-0000-0000-000000000003','c@test');
+    for (const name of readdirSync("supabase/migrations")
+      .filter((name) => name.endsWith(".sql"))
+      .sort()) {
+      await db.exec(readFileSync(`supabase/migrations/${name}`, "utf8"));
+    }
+    await db.exec(`insert into auth.users(id,email) values('10000000-0000-0000-0000-000000000001','a@test'),('10000000-0000-0000-0000-000000000002','b@test'),('10000000-0000-0000-0000-000000000003','c@test');
  insert into public.trove_members(user_id) values('10000000-0000-0000-0000-000000000001'),('10000000-0000-0000-0000-000000000002');
  insert into public.trove_places(id,owner_id,name,location) values('20000000-0000-0000-0000-000000000001','10000000-0000-0000-0000-000000000001','My place','DC');
  set role authenticated; set "request.jwt.claim.sub" = '10000000-0000-0000-0000-000000000002';`);
@@ -85,7 +87,11 @@ it("migration enforces ownership, membership, review constraints, and atomic pub
         `insert into public.trove_places(owner_id,name,location) values('10000000-0000-0000-0000-000000000003','Nonmember','DC')`,
       ),
     ).rejects.toMatchObject({ code: "42501" });
-    await db.exec("reset role; set role anon;");
+    await db.exec("reset role;");
+    expect((await db.query("select * from public.profiles")).rows).toHaveLength(
+      3,
+    );
+    await db.exec("set role anon;");
     await expect(
       db.query("select * from public.trove_places"),
     ).rejects.toMatchObject({ code: "42501" });

@@ -1,3 +1,4 @@
+import Auth from "@/pages/Auth";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -172,6 +173,7 @@ export default function Trove() {
             </div>
           ) : (
             <Routes>
+              <Route path="/auth" element={<Auth />} />
               <Route
                 path="/"
                 element={
