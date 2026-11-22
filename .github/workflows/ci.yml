@@ -24,6 +24,10 @@ concurrency:
   group: ci-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+# Runners are pinned to ubuntu-24.04 rather than ubuntu-latest: "latest" moved to
+# 26.04, which Playwright 1.56 cannot install Chromium dependencies for. Bump this
+# deliberately, together with Playwright.
+
 env:
   # Containers Trove never uses locally. Skipping them makes `supabase start`
   # faster; we keep postgres (always on), gotrue (auth), postgrest (API) and kong (gateway).
@@ -32,7 +36,7 @@ env:
 jobs:
   # ── Fast gate: no database, no browser. Everything else waits on this. ──
   static:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -47,7 +51,7 @@ jobs:
   # ── Path filter ("predictive" test selection). Only meaningful on PRs. ──
   changes:
     if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
       pull-requests: read # paths-filter lists PR files through the API
@@ -81,7 +85,7 @@ jobs:
 
   unit:
     needs: static
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -94,7 +98,7 @@ jobs:
       # default = readable log, github-actions = inline PR annotations, junit = summary data.
       - run: npm test -- --reporter=default --reporter=github-actions --reporter=junit --outputFile.junit=reports/vitest.xml
       - name: Test summary
-        if: always()
+        if: always() && hashFiles('reports/vitest.xml') != ''
         uses: test-summary/action@37b508cfee6d4d080eedd00b5bb240a6a784a6a5 # v2.6
         with:
           paths: reports/vitest.xml
@@ -106,7 +110,7 @@ jobs:
     if: >-
       !cancelled() && needs.static.result == 'success' &&
       (github.event_name == 'push' || needs.changes.outputs.db == 'true')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -125,7 +129,7 @@ jobs:
     if: >-
       !cancelled() && needs.static.result == 'success' &&
       (github.event_name == 'push' || needs.changes.outputs.e2e == 'true')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -152,12 +156,12 @@ jobs:
           source /tmp/trove-test-env
           npm run test:e2e
       - name: Test summary
-        if: always()
+        if: always() && hashFiles('reports/playwright.xml') != ''
         uses: test-summary/action@37b508cfee6d4d080eedd00b5bb240a6a784a6a5 # v2.6
         with:
           paths: reports/playwright.xml
       - name: Flaky and slow test insights
-        if: always()
+        if: always() && hashFiles('reports/playwright.json') != ''
         run: node scripts/ci-test-insights.mjs reports/playwright.json
       - name: Upload report and traces
         if: failure()
@@ -172,7 +176,7 @@ jobs:
   deploy:
     needs: [static, unit, supabase-db, playwright]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     # Secrets live on this environment, which only main may deploy to.
     environment:
