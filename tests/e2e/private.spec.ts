@@ -20,6 +20,9 @@ test("invited member has durable private places", async ({ page }) => {
   await page.goto("/add-review");
   await page.getByLabel("Restaurant name").fill("Private CI place");
   await page.getByRole("button", { name: "Save place", exact: true }).click();
+  // Saving is a network round trip here (unlike the demo), and the app only
+  // navigates once it completes; reloading earlier aborts the save response.
+  await expect(page).toHaveURL(/\/map$/);
   await page.reload();
   const card = page.getByRole("article", {
     name: "Private CI place",
