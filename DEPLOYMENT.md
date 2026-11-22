@@ -3,8 +3,9 @@
 ## Provider setup (one time)
 
 1. Use `origin` at `https://github.com/fredmottey/trove.git`. Fetch and inspect upstream history before integrating this checkout; preserve uncommitted work and do not force-push.
-2. Connect Vercel to that repository, framework Vite, Node 22. Git automatic deployments are disabled by `vercel.json`; CircleCI handles production after checks.
-3. Connect CircleCI to the repo. Create context `trove-production`, restrict it to the project and trusted `main` deployment jobs using CircleCI expression/security restrictions. Never pass it to fork/PR verification jobs. Configure `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `SUPABASE_ACCESS_TOKEN`, and `SUPABASE_DB_PASSWORD` there. Secrets belong in provider secret stores, never this repo or chat.
+2. Connect Vercel to that repository, framework Vite, Node 22. Git automatic deployments are disabled by `vercel.json`; GitHub Actions (`.github/workflows/ci.yml`) handles production after checks.
+3. In GitHub, environment `production` is restricted to the `main` branch. Set `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `SUPABASE_ACCESS_TOKEN`, and `SUPABASE_DB_PASSWORD` as environment secrets with `gh secret set <NAME> --env production` (it prompts for the value). Only the `deploy` job uses that environment; pull-request and fork runs never receive the secrets. Secrets belong in provider secret stores, never this repo or chat. `.circleci/config.yml` is inactive and kept for reference; do not connect CircleCI while `ci.yml` is active, or both would deploy.
+   A ruleset on `main` requires a pull request and the `static`, `unit`, `supabase-db`, and `playwright` checks, and blocks force-pushes and deletion. Repository admins can bypass it for emergencies.
 4. In Supabase `abkfayyocpyzhbdsvlbv`, inspect existing tables, policies, migration history, and auth configuration. The original `20250622135249` profile/auth migration is retained unchanged. Review it alongside `supabase/migrations/20261113000100_trove.sql`. Verify `trove_*` names are unused and reconcile migration history deliberately if this is an existing managed database. Apply the additive migration only after that inspection. No reset or automatic history repair.
 5. Configure Vercel production variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` using the project's URL/public key. Never put secret/service-role keys in `VITE_*` variables. Without these variables the public demo still works and sign-in is disabled.
 6. Supabase Auth: add `https://trove.fredmottey.dev/profile` to allowed redirects. Preserve existing site URL and other apps' settings in this shared project. Configure a verified email sender if reset/invite email delivery requires it.
@@ -27,7 +28,7 @@ For the full Supabase database/private smoke, install Docker and run `npx supaba
 
 ## Deployment and rollback
 
-Push trusted changes to `main` in `fredmottey/trove`. CircleCI checks lint/types/unit tests, starts disposable Supabase, checks database policies, and exercises Chromium at two sizes. Its serialized deploy job applies migrations and uses the pinned Vercel CLI to build and deploy the verified commit.
+Open a pull request against `main` in `fredmottey/trove`. GitHub Actions runs `static` (lint, types) first, then `unit`, `supabase-db` (disposable Supabase, database policies), and `playwright` (Chromium at two sizes) in parallel. On pull requests, `supabase-db` runs only when `supabase/**`, the lockfile, or the workflow changes, and `playwright` is skipped when only docs or non-browser tests change. Job summaries show test results, flaky tests (Playwright retries once in CI), and the slowest tests. After merge, every job runs on `main`, then the serialized `deploy` job applies migrations and uses the pinned Vercel CLI to build and deploy the verified commit.
 
 After deploying, verify `/`, `/map`, `/profile`, direct review-route refresh, sign-in, save/review/reload, logout/cache clearing, reset, and a second account's isolation. The Vercel deployment URL and domain TLS status must be verified before calling deployment complete.
 
