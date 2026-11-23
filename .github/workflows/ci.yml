@@ -204,7 +204,7 @@ jobs:
       # working against the new schema until the new frontend replaces it.
       - name: Apply additive hosted migrations
         run: |
-          npx --no-install supabase link --project-ref abkfayyocpyzhbdsvlbv
+          npx --no-install supabase link --project-ref pmydadqtvfmgnbjklwam
           npx --no-install supabase db push --yes --skip-vault
       # Build on the runner and upload the result, so what ships is exactly the
       # commit that passed the checks above.
