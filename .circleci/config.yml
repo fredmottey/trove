@@ -1,3 +1,6 @@
+# INACTIVE: GitHub Actions (.github/workflows/ci.yml) is the active CI and deploy.
+# Kept for reference only. Do not connect CircleCI to this repo while ci.yml is
+# active: both deploy jobs would apply migrations and deploy production.
 version: 2.1
 jobs:
   verify:

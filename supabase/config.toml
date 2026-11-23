@@ -19,7 +19,11 @@ enabled = true
 site_url = "http://127.0.0.1:8080"
 additional_redirect_urls = ["http://127.0.0.1:8080/profile"]
 jwt_expiry = 3600
+# Invite-only: nobody can self-register (GOTRUE_DISABLE_SIGNUP=true).
 enable_signup = false
 [auth.email]
-enable_signup = false
+# Despite the name, this toggles the whole email provider
+# (GOTRUE_EXTERNAL_EMAIL_ENABLED). false would also block password sign-in.
+# Account creation stays blocked by [auth].enable_signup above.
+enable_signup = true
 enable_confirmations = false
